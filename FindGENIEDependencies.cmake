@@ -3,10 +3,12 @@ if(NOT DEFINED GENIEDependencies_FOUND OR NOT GENIEDependencies_FOUND)
 
   include(CMessage)
 
-  #Check and set up GENIE Dependencies
-  find_package(Pythia6)
-  if(NOT Pythia6_FOUND)
-    SET(GENIEDependencies_FOUND FALSE)
+  # Check and set up GENIE dependencies
+  find_package(Pythia6 QUIET)
+  find_package(Pythia8 QUIET)
+  
+  if(NOT (Pythia6_FOUND OR Pythia8_FOUND))
+    set(GENIEDependencies_FOUND FALSE)
     return()
   endif()
 
